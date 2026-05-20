@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sabrina Abdi | Computer Science Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: none;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #0f1117;
+      --card: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.08);
+      --text: #f4f4f5;
+      --muted: #b4b4bd;
+      --accent: #d4a5ff;
+      --accent2: #8ec5fc;
+      --border: rgba(255,255,255,0.1);
+      --shadow: 0 20px 40px rgba(0,0,0,0.35);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(212,165,255,0.15), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(142,197,252,0.18), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ---------------- CAT PAW CURSOR ---------------- */
+
+    .paw-cursor {
+      position: fixed;
+      width: 34px;
+      height: 34px;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s linear;
+      filter: drop-shadow(0 0 10px rgba(212,165,255,0.5));
+    }
+
+    .paw-cursor svg {
+      width: 100%;
+      height: 100%;
+      fill: #f5d5ff;
+      opacity: 0.95;
+    }
+
+    a:hover ~ .paw-cursor,
+    button:hover ~ .paw-cursor {
+      transform: scale(1.2);
+    }
+
+    /* ---------------- NAVBAR ---------------- */
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      background: rgba(15,17,23,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: white;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -5px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 60px;
+      padding: 120px 7% 80px;
+    }
+
+    .hero-text h4 {
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.6rem;
+      line-height: 1.05;
+      margin-bottom: 22px;
+    }
+
+    .hero-text h1 span {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 34px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.35s ease;
+      border: 1px solid transparent;
+    }
+
+    .primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      color: #111;
+    }
+
+    .secondary {
+      border: 1px solid var(--border);
+      color: white;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-wrapper {
+      position: relative;
+      width: 420px;
+      height: 520px;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .floating-card {
+      position: absolute;
+      padding: 18px 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .card1 {
+      top: 8%;
+      left: -8%;
+    }
+
+    .card2 {
+      bottom: 10%;
+      right: -10%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-14px); }
+    }
+
+    /* ---------------- SECTIONS ---------------- */
+
+    section {
+      padding: 90px 7%;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+      margin-bottom: 18px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 50px;
+    }
+
+    /* ---------------- ABOUT ---------------- */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .glass-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 30px;
+      backdrop-filter: blur(12px);
+      transition: 0.4s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .glass-card h3 {
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .glass-card p,
+    .glass-card li {
+      color: var(--muted);
+    }
+
+    /* ---------------- EXPERIENCE ---------------- */
+
+    .timeline {
+      position: relative;
+      margin-top: 30px;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(var(--accent), var(--accent2));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 45px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -37px;
+      top: 10px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 14px rgba(212,165,255,0.8);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item span {
+      color: var(--accent);
+      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+    }
+
+    /* ---------------- GALLERY ---------------- */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 24px;
+      transition: 0.4s ease;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+      box-shadow: var(--shadow);
+    }
+
+    /* ---------------- CONTACT ---------------- */
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 760px;
+      margin: auto;
+      padding: 45px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(16px);
+    }
+
+    .contact h2 {
+      margin-bottom: 18px;
+      font-size: 2.2rem;
+    }
+
+    .contact p {
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ---------------- REVEAL ANIMATION ---------------- */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: 1s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text p {
+        margin-inline: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-text h1 {
+        font-size: 3.4rem;
+      }
+
+      .image-wrapper {
+        width: 320px;
+        height: 420px;
+      }
+
+      nav ul {
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .hero-text h1 {
+        font-size: 2.8rem;
+      }
+
+      .floating-card {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CAT PAW CURSOR -->
+  <div class="paw-cursor" id="pawCursor">
+    <svg viewBox="0 0 512 512">
+      <path d="M256 224c-79.5 0-144 64.5-144 144s64.5 112 144 112 144-32.5 144-112-64.5-144-144-144zm-144-96c26.5 0 48-28.7 48-64S138.5 0 112 0 64 28.7 64 64s21.5 64 48 64zm288 0c26.5 0 48-28.7 48-64S426.5 0 400 0s-48 28.7-48 64 21.5 64 48 64zM208 80c0-35.3-21.5-64-48-64s-48 28.7-48 64 21.5 64 48 64 48-28.7 48-64zm144 0c0-35.3-21.5-64-48-64s-48 28.7-48 64 21.5 64 48 64 48-28.7 48-64z"/>
+    </svg>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">SABRINA<span>ABDI</span></div>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text reveal">
+      <h4>Computer Science Undergraduate • IT Infrastructure • Leadership</h4>
+
+      <!-- CHANGE YOUR NAME HERE -->
+      <h1>
+        Hi, I'm <span>Sabrina Abdi</span>
+      </h1>
+
+      <!-- ADD YOUR PROFESSIONAL SUMMARY HERE -->
+      <p>
+        A highly motivated Computer Science undergraduate at Liverpool John Moores University with extensive experience across customer service, fraud operations, emergency support services, and IT infrastructure. Combining technical ability with exceptional communication and leadership skills, I thrive in fast-paced environments where adaptability, problem-solving, and teamwork are essential. Alongside my studies, I have successfully balanced leadership responsibilities as Vice-President and Captain of the university volleyball club while building hands-on industry experience in both technical and people-focused roles.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#contact" class="btn primary">Hire Me</a>
+        <a href="#experience" class="btn secondary">View Experience</a>
+      </div>
+    </div>
+
+    <div class="hero-image reveal">
+      <div class="image-wrapper">
+
+        <!-- MAIN PROFILE IMAGE -->
+        <!-- Replace IMG_2782.jpeg with your image file -->
+        <img src="IMG_2782.jpeg" alt="Profile Picture">
+      </div>
+
+      <div class="floating-card card1">
+        <strong>Tech & Leadership</strong><br>
+        Experience
+      </div>
+
+      <div class="floating-card card2">
+        <strong>Vice-President</strong><br>
+        LJMU Volleyball
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title reveal">About Me</h2>
+    <p class="section-sub reveal">
+      A refined and modern presentation of your professional identity.
+      This section is designed to make recruiters instantly interested.
+    </p>
+
+    <div class="about-grid">
+      <div class="glass-card reveal">
+        <h3>Education</h3>
+
+        <!-- ADD EDUCATION DETAILS HERE -->
+        <p>
+          BSc \(Hons\) Computing with Foundation Year<br>Liverpool John Moores University \(LJMU\)<br>2021 – Present<br><br>Relevant modules include Secure Software Development, Database Systems, Algorithm Design, Automata, Languages & Development, and Knowledge Based Systems.
+        </p>
+      </div>
+
+      <div class="glass-card reveal">
+        <h3>Skills</h3>
+
+        <!-- ADD YOUR SKILLS HERE -->
+        <ul>
+          <li>Java, Python & C\+\+</li>
+          <li>HTML, PHP, SQL, MongoDB & NoSQL</li>
+          <li>Secure Software Development</li>
+          <li>Database Systems & Algorithms</li>
+          <li>Leadership & Team Management</li>
+          <li>Customer Service & Fraud Support</li>
+        </ul>
+      </div>
+
+      <div class="glass-card reveal">
+        <h3>Achievements</h3>
+
+        <!-- ADD ACHIEVEMENTS HERE -->
+        <p>
+          Vice-President of the LJMU Volleyball Club and Captain of the Women’s Team. Led the team to winning the BUCS league for the first time in 3 years and achieving second place in a major northern tournament. Successfully established the first Women’s B Team in the club’s history, increasing participation and inclusivity within the club.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2 class="section-title reveal">Experience</h2>
+    <p class="section-sub reveal">
+      A journey through technical roles, leadership positions, customer-facing environments, and impactful real-world experience.
+    </p>
+
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <h3>IT Infrastructure Intern</h3>
+        <span>Alzheimer’s Society • June 2025 – September 2025</span>
+
+        <!-- EXPERIENCE DESCRIPTION -->
+        <p>
+          Worked closely with experienced IT professionals to improve backend and frontend system efficiency for internal teams. Gained practical experience with Excel, SharePoint, infrastructure support, and system management while strengthening technical and analytical skills in a professional environment.
+        </p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <h3>Social Care Support Worker</h3>
+        <span>Grove Social-Care • August 2023 – August 2025</span>
+
+        <p>
+          Provided guidance and independent living support for young people aged 16–18. Developed resilience, empathy, communication, and decision-making skills while working in emotionally demanding situations and helping vulnerable individuals build confidence and stability.
+        </p>
+            <div class="timeline-item reveal">
+        <h3>Fraud Advisor</h3>
+        <span>Santander • June 2022 – October 2022</span>
+
+        <p>
+          Supported customers affected by fraud and scams while handling sensitive information with professionalism and empathy. Strengthened administrative accuracy, analytical thinking, teamwork, and communication skills within a fast-paced financial environment.
+        </p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <h3>Emergency Services Call Handler</h3>
+        <span>BT • November 2021 – March 2022</span>
+
+        <p>
+          Operated in a high-pressure emergency services environment requiring calm decision-making, emotional resilience, and clear communication. Learned to manage stressful situations professionally while supporting callers during urgent circumstances.
+        </p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <h3>Banking Customer Advisor</h3>
+        <span>Lloyds Banking Group • July 2021 – September 2021</span>
+
+        <p>
+          Assisted customers with banking queries and account concerns while maintaining a calm and solution-focused approach. Developed strong interpersonal communication and customer support skills through daily client interaction.
+        </p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <h3>Customer Service Advisor</h3>
+        <span>O2 & Nationwide • 2018 – 2019</span>
+
+        <p>
+          Built a strong foundation in customer service, teamwork, and problem-solving. Gained valuable experience handling customer queries and understanding the importance of professionalism, confidentiality, and effective communication.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <h2 class="section-title reveal">Gallery</h2>
+    <p class="section-sub reveal">
+      Showcase your professional image, achievements, university life, projects, volleyball leadership moments, or creative portfolio content.
+    </p>
+
+    <div class="gallery-grid reveal">
+
+      <!-- REPLACE THESE IMAGE FILE NAMES -->
+      <img src="IMG_2782.jpeg" alt="Gallery Image">
+      <img src="IMG_3011.jpeg" alt="Gallery Image">
+      <img src="IMG_4128.jpeg" alt="Gallery Image">
+      <img src="IMG_5220.jpeg" alt="Gallery Image">
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-box reveal">
+      <h2>Let's Work Together</h2>
+
+      <!-- ADD YOUR CONTACT DESCRIPTION -->
+      <p>
+        I am actively seeking opportunities where I can apply my technical knowledge, leadership experience, and strong communication skills within an ambitious and forward-thinking team. Feel free to reach out regarding placements, internships, collaborations, or graduate opportunities.
+      </p>
+
+      <!-- CHANGE THESE LINKS -->
+      <div class="hero-buttons" style="justify-content:center;">
+        <a href="mailto:sabdisabrina@outlook.com" class="btn primary">Email Me</a>
+        <a href="https://linkedin.com" class="btn secondary">Connect on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Sabrina Abdi — Computer Science Undergraduate, IT Infrastructure Intern & Technology Professional.
+  </footer>
+
+  <script>
+
+    // ---------------- CAT PAW CURSOR ----------------
+
+    const paw = document.getElementById('pawCursor');
+
+    document.addEventListener('mousemove', (e) => {
+      paw.style.left = e.clientX + 'px';
+      paw.style.top = e.clientY + 'px';
+    });
+
+    // ---------------- SCROLL REVEAL ----------------
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    function revealOnScroll() {
+      reveals.forEach((element) => {
+        const windowHeight = window.innerHeight;
+        const revealTop = element.getBoundingClientRect().top;
+
+        if (revealTop < windowHeight - 80) {
+          element.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // ---------------- PARALLAX EFFECT ----------------
+
+    document.addEventListener('mousemove', (e) => {
+      const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
+      const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+
+      document.querySelectorAll('.floating-card').forEach(card => {
+        card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+    });
+
+  </script>
+
+</body>
+</html>
